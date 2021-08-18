@@ -2,8 +2,8 @@ import React from 'react';
 import {withRouter} from 'react-router-dom';
 import './menu-item.styles.scss'
 
-
 //withRouter is a HOC Component
+//history is same as Link in ROuter but without re-render
 const MenuItem = ({title,imageUrl,size ,history,linkUrl,match}) => {
     return (
         <div className={`${size} menu-item`} onClick={() => history.push(`${match.url}${linkUrl}`)}>
