@@ -9,7 +9,7 @@ import { auth } from '../../firebase/firebase.utils';
 import './header.styles.scss'
 
 
-const Header = ({currentUser}) => {
+const Header = ({currentUser, hidden}) => {
     return (
         <div className="header">
             <Link className="logo-container" to="/">
@@ -30,13 +30,19 @@ const Header = ({currentUser}) => {
                }
                <CartIcon />
             </div>
-            <CartDropDown />
+
+            {
+                hidden ? null :<CartDropDown />
+                
+            }
+            
         </div>
     )
 }
 
-const mapStateToProps = state => ({
-     currentUser : state.user.currentUser
+const mapStateToProps = ({user: {currentUser}, cart: {hidden}}) => ({
+     currentUser,
+     hidden
 })
 
 //connect is a HOC Component that connects a component to a redux reducer
