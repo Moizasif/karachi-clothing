@@ -2,6 +2,9 @@ import React from 'react'
 import {Link} from 'react-router-dom';
 import { ReactComponent as Logo} from '../../assets/crown.svg';
 import {connect} from 'react-redux'
+import { createStructuredSelector } from 'reselect';
+import {selectCartHidden} from '../../redux/cart/cart.selectors'
+import { selectCurrentUser } from '../../redux/user/user.selectors';
 import CartIcon from '../cart-icon/CartIcon';
 import CartDropDown from '../cart-dropdown/CartDropDown';
 import { auth } from '../../firebase/firebase.utils';
@@ -40,9 +43,9 @@ const Header = ({currentUser, hidden}) => {
     )
 }
 
-const mapStateToProps = ({user: {currentUser}, cart: {hidden}}) => ({
-     currentUser,
-     hidden
+const mapStateToProps = createStructuredSelector({
+     currentUser: selectCurrentUser,
+     hidden: selectCartHidden
 })
 
 //connect is a HOC Component that connects a component to a redux reducer
